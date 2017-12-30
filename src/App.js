@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, StatusBar, TouchableOpacity, Text } from 'react-native';
 import { Actions, Scene, Router } from 'react-native-router-flux';
 import * as webservices from 'marvelApp/src/webservices/webservices'
+
 //import { Colors } from 'marvelApp/src/commons'
 
 /********************** COMPONENTS **********************/

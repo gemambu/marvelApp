@@ -1,41 +1,63 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
-import * as webservices from 'marvelApp/src/webservices/webservices'
+import { connect } from 'react-redux';
+import * as CharactersActions from 'marvelApp/src/redux/actions/characters'
 
-export default class CharactersList extends Component {
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            list: [],
-            selected: null
-        }
-        
-    }
+class CharactersList extends Component {
 
     componentWillMount(){
-        const characters = webservices.fetchCharacters('1d62818073f1f77290d9cba5a0df3d8f');
-        console.log('characters: ', characters)
-        this.setState({list: characters})
+       this.props.fetchCharacters()
+    }
+
+    renderItem(item, index) {
+
+        return <View>
+            <Text>
+                {item.name}
+            </Text>
+            </View>
+        // return (
+        //     <HousesCell
+        //         item={item}
+        //         onSelect={(house) => this.onSelect(house)}
+        //     />
+        // )
     }
 
     render() {
         return (
         <View style={styles.container}>
             <Text style={{ color: 'white' }}>Comics</Text>
-                {/* <FlatList
+                { <FlatList
                 
                     data={this.props.list}
-                    ListHeaderComponent={() => this.renderHeader()}
+                    //ListHeaderComponent={() => this.renderHeader()}
                     renderItem={({ item, index }) => this.renderItem(item, index)}
                     keyExtractor={(item, index) => item.id}
                     extraData={this.props}
                     numColumns={2}
-                /> */}
+                /> }
         </View>)
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log('State: ', state)
+    return {
+        list: state.characters.list,
+        isFetching: state.characters.isFetching
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        fetchCharacters: () => {
+            dispatch(CharactersActions.fetchCharactersList())
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharactersList)
 
 const styles = StyleSheet.create({
     container: {

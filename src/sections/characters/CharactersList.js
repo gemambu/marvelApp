@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { connect } from 'react-redux';
 import * as CharactersActions from 'marvelApp/src/redux/actions/characters'
+import CharacterCell from './CharacterCell'
 
 class CharactersList extends Component {
 
@@ -11,20 +12,16 @@ class CharactersList extends Component {
 
     renderItem(item, index) {
 
-        return <View>
-            <Text>
-                {item.name}
-            </Text>
-            </View>
-        // return (
-        //     <HousesCell
-        //         item={item}
-        //         onSelect={(house) => this.onSelect(house)}
-        //     />
-        // )
+        return (
+            <CharacterCell
+                item={item}
+                onSelect={(character) => this.onSelect(character)}
+            />
+        )
     }
 
     render() {
+
         return (
         <View style={styles.container}>
             <Text style={{ color: 'white' }}>Comics</Text>
@@ -35,14 +32,14 @@ class CharactersList extends Component {
                     renderItem={({ item, index }) => this.renderItem(item, index)}
                     keyExtractor={(item, index) => item.id}
                     extraData={this.props}
-                    numColumns={2}
+                    numColumns={1}
                 /> }
         </View>)
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log('State: ', state)
+
     return {
         list: state.characters.list,
         isFetching: state.characters.isFetching
@@ -50,6 +47,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => {
+
     return {
         fetchCharacters: () => {
             dispatch(CharactersActions.fetchCharactersList())
@@ -63,6 +61,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingVertical: 30,
-        paddingTop: 40 
+        paddingTop: 40,
+        backgroundColor: 'black'
     }
 });

@@ -1,0 +1,1 @@
+export const LIST_CHARACTERS_OFFSET = 20

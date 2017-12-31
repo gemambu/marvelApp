@@ -13,6 +13,7 @@ import * as webservices from 'marvelApp/src/webservices/webservices'
 
 /********************** COMPONENTS **********************/
 import CharactersList from 'marvelApp/src/sections/characters/CharactersList'
+import CharacterDetail from 'marvelApp/src/sections/characters/CharacterDetail'
 
 /********************** REDUX **********************/
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -47,6 +48,10 @@ export default class App extends Component {
               key={'CharactersList'}
               component={CharactersList}
               hideNavBar
+            />
+            <Scene
+              key={'CharacterDetail'}
+              component={CharacterDetail}
             />
           </Scene>
         </Router>

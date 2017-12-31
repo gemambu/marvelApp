@@ -9,7 +9,7 @@ import { View, StyleSheet, StatusBar, TouchableOpacity, Text } from 'react-nativ
 import { Actions, Scene, Router } from 'react-native-router-flux';
 import * as webservices from 'marvelApp/src/webservices/webservices'
 
-//import { Colors } from 'marvelApp/src/commons'
+import { colors } from 'marvelApp/src/commons'
 
 /********************** COMPONENTS **********************/
 import CharactersList from 'marvelApp/src/sections/characters/CharactersList'
@@ -52,6 +52,8 @@ export default class App extends Component {
             <Scene
               key={'CharacterDetail'}
               component={CharacterDetail}
+              navigationBarStyle={styles.navBar}
+              navBarButtonColor={'#FABADA'}
             />
           </Scene>
         </Router>
@@ -64,5 +66,9 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
       flex: 1
-  }
+  },
+
+  navBar: {
+    backgroundColor: colors.navBar,
+  },
 });

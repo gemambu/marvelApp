@@ -1,7 +1,7 @@
 import * as types from '../types/characters'
 import { fetchCharacters } from 'marvelApp/src/webservices/webservices'
 import { Actions } from 'react-native-router-flux'
-import * as Constants from '../../commons/constants'
+import { constants } from 'marvelApp/src/commons'
 import qs from 'qs'
 
 
@@ -17,6 +17,13 @@ export function updateCharactersListOffset(value) {
     return {
         type: types.GET_CHARACTERS_OFFSET,
         value
+    }
+}
+
+function setCharactersFetching(value) {
+    return{
+        type: types.GET_CHARACTERS_FETCHING,
+        value: value
     }
 }
 
@@ -37,12 +44,14 @@ export function initCharactersList(){
 export function fetchCharactersList(){
     return (dispatch, getState) => {
 
+        dispatch(setCharactersFetching(true))
+
         const apiKey = '1d62818073f1f77290d9cba5a0df3d8f'
 
         const state = getState()
         const list = state.characters.list
         const offset = state.characters.offset
-        const limit = Constants.LIST_CHARACTERS_OFFSET
+        const limit = constants.LIST_CHARACTERS_OFFSET
 
         const filters = {
             offset: offset,
@@ -54,11 +63,20 @@ export function fetchCharactersList(){
         fetchCharacters(apiKey, queryString).then(response => {
 
             const newList = [...list, ...response.data.results]
+            dispatch(setCharactersFetching(false))
             dispatch(updateCharactersList(newList, response.data.total))
         }).catch( error => {
 
             console.log("fetchCharactersList error: ", error)
+            dispatch(setCharactersFetching(false))
         });
+    }
+}
+
+export function updateCharacterSelected(character) {
+    return {
+        type: types.UPDATE_SELECTED_CHARACTER,
+        character
     }
 }
 

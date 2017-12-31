@@ -23,11 +23,21 @@ export default function reducer(state = initialState, action = {}) {
                 ...state,
                 offset: action.value
             };
+        case types.GET_CHARACTERS_FETCHING:
+            return {
+                ...state,
+               isFetching: action.value
+            };
         case types.SHOW_CHARACTER_DETAIL:
             return {
                 ...state,
                 item: action.value
             };
+        case types.UPDATE_SELECTED_CHARACTER:
+            return {
+                ...state,
+                item: action.character
+            }
         default:
             return state;
     }

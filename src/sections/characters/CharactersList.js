@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux'
 import * as CharactersActions from 'marvelApp/src/redux/actions/characters'
 import CharacterCell from './CharacterCell'
-import * as Constants from '../../commons/constants'
+import { colors, constants } from 'marvelApp/src/commons'
 
 class CharactersList extends Component {
 
@@ -19,6 +20,10 @@ class CharactersList extends Component {
        this.props.initCharactersList()
     }
 
+    onSelect(character){
+        this.props.updateCharacterSelected(character)
+    }
+
     renderItem(item, index) {
 
         return (
@@ -32,10 +37,27 @@ class CharactersList extends Component {
     onEndReached(){
         console.log('ON END REACHED')
 
-        if (this.props.list.length < this.props.total) { //} && !this.props.isFetching) {
-            let newOffset = this.props.offset + Constants.LIST_CHARACTERS_OFFSET
+        if (this.props.list.length < this.props.total && !this.props.isFetching) {
+            let newOffset = this.props.offset + constants.LIST_CHARACTERS_OFFSET
             this.props.fetchCharacters(newOffset)
         }
+    }
+
+    renderHeader() {
+        if(this.props.isFetching){
+            return (
+                <View>
+                    <ActivityIndicator
+                    animating={this.props.isFetching}
+                    size='large'
+                    color='#FABADA'
+                    style={styles.activityIndicator} />
+                </View>
+            )
+        } else {
+            return null
+        }
+        
     }
 
     render() {
@@ -46,7 +68,7 @@ class CharactersList extends Component {
                 { <FlatList
                 
                     data={this.props.list}
-                    //ListHeaderComponent={() => this.renderHeader()}
+                    ListHeaderComponent={() => this.renderHeader()}
                     renderItem={({ item, index }) => this.renderItem(item, index)}
                     onEndReached = {() => this.onEndReached()}
                     keyExtractor={(item, index) => item.id}
@@ -55,6 +77,8 @@ class CharactersList extends Component {
                 /> }
         </View>)
     }
+
+    
 }
 
 const mapStateToProps = (state) => {
@@ -77,6 +101,10 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(CharactersActions.updateCharactersListOffset(offset))
             dispatch(CharactersActions.fetchCharactersList())
         },
+        updateCharacterSelected: (character) => {
+            dispatch(CharactersActions.updateCharacterSelected(character))
+            Actions.CharacterDetail( { title: character.name} )
+        }
     }
 }
 
@@ -88,5 +116,9 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         paddingTop: 40,
         backgroundColor: 'black'
+    },
+
+    activityIndicator: {
+        marginVertical: 50
     }
 });

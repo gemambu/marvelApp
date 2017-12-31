@@ -1,1 +1,1 @@
-export const LIST_CHARACTERS_OFFSET = 20
+export const LIST_CHARACTERS_OFFSET = 10

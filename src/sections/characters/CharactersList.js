@@ -32,7 +32,7 @@ class CharactersList extends Component {
     onEndReached(){
         console.log('ON END REACHED')
 
-        if (this.props.list.length < this.props.total && !this.props.isFetching) {
+        if (this.props.list.length < this.props.total) { //} && !this.props.isFetching) {
             let newOffset = this.props.offset + Constants.LIST_CHARACTERS_OFFSET
             this.props.fetchCharacters(newOffset)
         }
@@ -48,7 +48,7 @@ class CharactersList extends Component {
                     data={this.props.list}
                     //ListHeaderComponent={() => this.renderHeader()}
                     renderItem={({ item, index }) => this.renderItem(item, index)}
-                    onEndReached = { this.onEndReached }
+                    onEndReached = {() => this.onEndReached()}
                     keyExtractor={(item, index) => item.id}
                     extraData={this.props}
                     numColumns={1}
@@ -60,8 +60,10 @@ class CharactersList extends Component {
 const mapStateToProps = (state) => {
 
     return {
-        list: state.characters.list,
-        isFetching: state.characters.isFetching
+        list        : state.characters.list,
+        isFetching  : state.characters.isFetching,
+        total       : state.characters.total,
+        offset      : state.characters.offset,
     }
 }
 

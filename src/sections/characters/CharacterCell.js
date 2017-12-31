@@ -12,11 +12,7 @@ export default class CharacterCell extends Component {
     render() {
 
         const { item, onSelect } = this.props
-
-        console.log('CharacterCell: ', item)
-
         const image = item && item.thumbnail ? { uri: item.thumbnail.path + '/landscape_amazing.jpg' } : null
-        console.log('CharacterCell image generated: ', image)
 
         return (
             <TouchableOpacity onPress={() => this.onSelect(item)}>
@@ -53,7 +49,7 @@ const styles = StyleSheet.create({
 
     textContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         padding: 20,
         position: 'absolute',
         bottom: 0,
@@ -63,6 +59,7 @@ const styles = StyleSheet.create({
     },
 
     name: {
+        alignItems:'flex-end',
         flex: 1,
         fontSize: 20,
         fontWeight: '600',

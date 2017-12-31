@@ -10,8 +10,8 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
 
-    console.log('REDUCER: ', action)
     switch (action.type) {
+
         case types.GET_CHARACTERS:
             return {
                 ...state,

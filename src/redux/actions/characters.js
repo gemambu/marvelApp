@@ -36,13 +36,10 @@ export function initCharactersList(){
 
 export function fetchCharactersList(){
     return (dispatch, getState) => {
-        
-        dispatch(updateCharactersList([], 0))
+
         const apiKey = '1d62818073f1f77290d9cba5a0df3d8f'
 
-
         const state = getState()
-        console.log('action state: ', state)
         const list = state.characters.list
         const offset = state.characters.offset
         const limit = Constants.LIST_CHARACTERS_OFFSET
@@ -51,13 +48,15 @@ export function fetchCharactersList(){
             offset: offset,
             limit: limit
         }
-       
-        fetchCharacters(apiKey, qs.stringify(filters)).then(response => {
 
-            console.log("fetchCharactersList response: ", response)
+        const queryString = '&' + qs.stringify(filters)
+        
+        fetchCharacters(apiKey, queryString).then(response => {
+
             const newList = [...list, ...response.data.results]
             dispatch(updateCharactersList(newList, response.data.total))
         }).catch( error => {
+
             console.log("fetchCharactersList error: ", error)
         });
     }

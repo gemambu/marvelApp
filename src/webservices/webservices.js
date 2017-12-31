@@ -9,8 +9,7 @@ export function configure() {
 
 export function fetchCharacters(publicApiKey, queryParams){
     
-    const url = Constants.CHARACTERS_ENDPOINT + Constants.TIMESTAMP + Constants.PUBLIC_API_KEY + publicApiKey + Constants.HASH + '&' +queryParams;
-    console.log('url: ', url);
+    const url = Constants.CHARACTERS_ENDPOINT + Constants.TIMESTAMP + Constants.PUBLIC_API_KEY + publicApiKey + Constants.HASH + queryParams;
     
     return new Promise(function(resolve, reject) {
         axios.get(url).then( response => {

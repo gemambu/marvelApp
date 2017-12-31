@@ -24,3 +24,4 @@ export function fetchCharacters(publicApiKey, queryParams){
         });
     })
 }
+

@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native'
+import { connect } from 'react-redux'
+import * as CharactersAction from 'marvelApp/src/redux/actions/characters'
 
-export default class CharacterDetail extends Component {
+class CharacterDetail extends Component {
     render() {
+
+        const { character } = this.props
+         console.log('character: ', character)
         return (
             <View>
-                <Text>{'Algo'}</Text>
+                <Text>{'Nombre: ' + character.name}</Text>
+                <Text>{'Description: ' + character.description}</Text>
+                
             </View>
         )
 
 
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        character: state.characters.item,
+    }
+}
+
+
+
+export default connect(mapStateToProps, null)(CharacterDetail)

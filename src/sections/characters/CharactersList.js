@@ -64,7 +64,7 @@ class CharactersList extends Component {
 
         return (
         <View style={styles.container}>
-            <Text style={{ color: 'white' }}>Comics</Text>
+            <Text style={styles.title}>Comics</Text>
                 { <FlatList
                 
                     data={this.props.list}
@@ -115,9 +115,15 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingVertical: 30,
         paddingTop: 40,
-        backgroundColor: 'black'
+        backgroundColor: colors.backgroundColor
     },
 
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: colors.title,
+        textAlign: 'center'
+    },
     activityIndicator: {
         marginVertical: 50
     }

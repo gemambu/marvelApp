@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image, Dimensions, Platform } from 'react-native'
+import { colors } from 'marvelApp/src/commons'
 
 export default class CharacterCell extends Component {
 
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
         left: 0,
-        backgroundColor: 'rgba(255,255,255,0.2)',
+        backgroundColor: 'rgba(255,255,255,0.6)',
     },
 
     name: {
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'black',
+        color: colors.title,
     },
 
     image: {

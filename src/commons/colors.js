@@ -1,2 +1,5 @@
-export const activityIndicator = '#FABADA'
+export const activityIndicator = 'rgb(255,0,0'
 export const navBar = 'rgb(36, 36, 36)'
+export const navBarTitle = 'rgb(255,0,0)'
+export const title = 'rgb(255,0,0)'
+export const background = 'rgb(255,255,255)'

@@ -53,7 +53,7 @@ export default class App extends Component {
               key={'CharacterDetail'}
               component={CharacterDetail}
               navigationBarStyle={styles.navBar}
-              navBarButtonColor={'#FABADA'}
+              navBarButtonColor={colors.navBarTitle}
             />
           </Scene>
         </Router>
@@ -65,10 +65,14 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1
+      flex: 1,
   },
 
   navBar: {
     backgroundColor: colors.navBar,
   },
+
+  navBarTitle:{
+    color: colors.navBarTitle
+  }
 });

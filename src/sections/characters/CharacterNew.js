@@ -51,10 +51,12 @@ class CharacterNew extends Component {
         if( this.validateForm() ) {
             
             const characterData = {
-                nombre: this.state.name,
+                name: this.state.name,
                 image: this.state.image ? 'data:image/jpeg;base64,' + this.state.image.data : null,
                 description: this.state.description
             }
+
+            console.log('Trying to save character: ', characterData)
 
             this.showAlert()
 
@@ -66,9 +68,7 @@ class CharacterNew extends Component {
             'Incoming feature',
             'Sorry, at the moment is not possible to save new Characters',
             [
-              //{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-              //{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-              {text: 'OK, thanks!', onPress: () => console.log('OK Pressed')},
+              {text: 'OK, thanks!'},
             ],
             { cancelable: false }
           )
@@ -85,19 +85,16 @@ class CharacterNew extends Component {
         }
 
         ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
+            console.log('Response = ', response)
 
             if (response.didCancel) {
-                console.log('User cancelled image picker');
+                console.log('User cancelled image picker')
             }
             else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
+                console.log('ImagePicker Error: ', response.error)
             }
             else {
-                let source = { uri: response.uri };
-
-                // You can also display the image using data:
-                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+                let source = { uri: response.uri }
 
                 this.setState({
                     image: response
@@ -126,7 +123,7 @@ class CharacterNew extends Component {
                         onChangeText    = { (v)=> this.setState({name: v}) }
                         value           = { this.state.name }
                         error           = { this.state.nameError }
-                        label           = { 'Name: ' }
+                        label           = { 'Name:' }
                         placeHolder     = { 'Magneto' }
                     />
                 </View>
@@ -137,7 +134,8 @@ class CharacterNew extends Component {
                         onChangeText    = { (v)=> this.setState({description: v}) }
                         value           = { this.state.description }
                         error           = { this.state.descriptionError }
-                        label           = { 'Description: ' }
+                        label           = { 'Description:' }
+                        maxLength       = { 100 }
                         multiline       = { true }
                         numberOfLines   = { 4 }
                         placeHolder     = { 'The character is a powerful mutant, he has the ability to generate and control magnetic fields' }

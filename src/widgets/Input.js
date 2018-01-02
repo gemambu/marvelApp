@@ -11,6 +11,7 @@ export default class Input extends Component {
         label: '',
         value: '',
         error: '',
+        maxLength: 20,
         multiline: false,
         numberOfLines: 1,
         placeHolder: '',
@@ -28,6 +29,7 @@ export default class Input extends Component {
                     onChangeText            = { (v) => this.props.onChangeText(v) }
                     placeholder             = { this.props.placeHolder }
                     placeholderTextColor    = { 'grey' }
+                    maxLength               = { this.props.maxLength }
                     multiline               = { this.props.multiline }
 	                numberOfLines           = { this.props.numberOfLines }
                     value                   = { this.props.value }

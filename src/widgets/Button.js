@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, Text, ActivityIndicator, StyleSheet } from 'react-native'
+import { colors } from 'marvelApp/src/commons'
 
 export default class Button extends Component {
 
@@ -8,22 +9,35 @@ export default class Button extends Component {
         containerStyle: {},
         spinnerColor: 'black',
         label: '',
-        onPress: () => {},
+        onPress: () => { },
         isFetching: false,
 
     }
 
     _onPress() {
-        if(!this.props.isFetching) {
+        if (!this.props.isFetching) {
             this.props.onPress()
         }
     }
 
-    render() {
+    addSpinner() {
+
+        const Spinner = require('react-native-spinkit')
+
         return (
-            <TouchableOpacity style={[styles.container, this.props.containerStyle]} onPress={ () => this._onPress() } >
-                <Text style={[styles.label, this.props.labelStyle]}>{ this.props.label }</Text>
-                { this.props.isFetching ? <ActivityIndicator animating={true} color={this.props.spinnerColor} style={styles.spinner} /> : null }
+            <View style={styles.spinner}>
+                <Spinner type={'FadingCircleAlt'} color={colors.activityIndicator} size={60} />
+            </View>
+        )
+    }
+    render() {
+
+
+
+        return (
+            <TouchableOpacity style={[styles.container, this.props.containerStyle]} onPress={() => this._onPress()} >
+                <Text style={[styles.label, this.props.labelStyle]}>{this.props.label}</Text>
+                {this.props.isFetching ? this.addSpinner() : null}
             </TouchableOpacity>
         )
     }
@@ -41,12 +55,14 @@ const styles = StyleSheet.create({
     },
 
     label: {
-        color: 'red',
+        color: colors.title,
         fontWeight: '600',
         fontSize: 16,
     },
-
+    
     spinner: {
-        marginLeft: 20,
-    }
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
 })

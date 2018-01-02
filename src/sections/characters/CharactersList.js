@@ -52,7 +52,7 @@ class CharactersList extends Component {
 
             return (
                 <View style={styles.spinner}>
-                    <Spinner type={'FadingCircleAlt'} color={'red'} size={60} />
+                    <Spinner type={'FadingCircleAlt'} color={colors.activityIndicator} size={60} />
                 </View>
             )
         } else {

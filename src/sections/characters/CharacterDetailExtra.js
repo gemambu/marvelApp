@@ -39,15 +39,15 @@ export default class CharacterDetailExtra extends Component {
 const styles = StyleSheet.create({
 
     typeTitle: {
-        color: 'rgb(255,0,0)',
+        color: colors.title,
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center'
     },
 
     itemInfo: {
-        color: 'rgb(255,0,0)',
-        fontSize: 12,
+        color: colors.text,
+        fontSize: 13,
 
     }
 

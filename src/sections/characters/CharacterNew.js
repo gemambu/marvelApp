@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     
     imageContainerBackground: {
         position: 'absolute',
-        backgroundColor: 'rgba(255,0,0,0.6)',
+        backgroundColor: colors.mainBackground,
         top: 0,
         bottom: 0,
         left: 0,

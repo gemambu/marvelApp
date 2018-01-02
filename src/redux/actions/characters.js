@@ -2,6 +2,7 @@ import * as types from '../types/characters'
 import { fetchCharacters, fetchCharacter } from 'marvelApp/src/webservices/webservices'
 import { Actions } from 'react-native-router-flux'
 import { constants } from 'marvelApp/src/commons'
+import * as webservices from 'marvelApp/src/webservices/constants'
 import qs from 'qs'
 
 
@@ -46,8 +47,6 @@ export function fetchCharactersList(){
 
         dispatch(setCharactersFetching(true))
 
-        const apiKey = '1d62818073f1f77290d9cba5a0df3d8f'
-
         const state = getState()
         const list = state.characters.list
         const offset = state.characters.offset
@@ -60,7 +59,14 @@ export function fetchCharactersList(){
 
         const queryString = '&' + qs.stringify(filters)
         
-        fetchCharacters(apiKey, queryString).then(response => {
+        const url = webservices.CHARACTERS_ENDPOINT + 
+                    webservices.TIMESTAMP + 
+                    webservices.PUBLIC_API_KEY + 
+                    webservices.PUBLIC_API + 
+                    webservices.HASH + 
+                    queryString
+
+        fetchCharacters(url).then(response => {
 
             const newList = [...list, ...response.data.results]
             dispatch(setCharactersFetching(false))

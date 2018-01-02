@@ -1,16 +1,15 @@
 import axios from 'axios'
-import * as Constants from './constants'
+import * as constants from './constants'
 
 export function configure() {
-    axios.defaults.baseURL = Constants.BASE_URL;
-    axios.defaults.headers.post['Content-Type'] = Constants.CONTENT_TYPE;
-    axios.defaults.headers.common['Referer'] = Constants.REFERRER;
+    axios.defaults.baseURL = constants.BASE_URL;
+    axios.defaults.headers.post['Content-Type'] = constants.CONTENT_TYPE;
+    axios.defaults.headers.common['Referer'] = constants.REFERRER;
 }
 
-export function fetchCharacters(publicApiKey, queryParams){
+export function fetchCharacters(url){
     
-    const url = Constants.CHARACTERS_ENDPOINT + Constants.TIMESTAMP + Constants.PUBLIC_API_KEY + publicApiKey + Constants.HASH + queryParams;
-    
+    console.log('URL: ', url)
     return new Promise(function(resolve, reject) {
         axios.get(url).then( response => {
 

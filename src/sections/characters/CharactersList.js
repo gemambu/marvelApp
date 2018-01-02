@@ -6,6 +6,7 @@ import * as CharactersActions from 'marvelApp/src/redux/actions/characters'
 import CharacterCell from './CharacterCell'
 import { colors, constants } from 'marvelApp/src/commons'
 
+
 class CharactersList extends Component {
 
     constructor(props){
@@ -44,14 +45,20 @@ class CharactersList extends Component {
     }
 
     renderHeader() {
+
         if(this.props.isFetching){
+
+
+            const Spinner = require('react-native-spinkit');
+
             return (
                 <View>
-                    <ActivityIndicator
+                    <Spinner name="three-bounce" color="red"/>
+                    {/* <ActivityIndicator
                     animating={this.props.isFetching}
                     size='large'
                     color='#FABADA'
-                    style={styles.activityIndicator} />
+                    style={styles.activityIndicator} /> */}
                 </View>
             )
         } else {

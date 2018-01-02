@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
         ...Platform.select({
             ios: {
-                shadowColor: 'rgba(255,255,255,0.1)',
+                shadowColor: colors.cellShadow,
                 shadowOpacity: 1,
                 shadowOffset: { height: 4, width: 4 },
                 shadowRadius: 2
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
         left: 0,
-        backgroundColor: 'rgba(255,255,255,0.6)',
+        backgroundColor: colors.cellTextBackground,
     },
 
     name: {

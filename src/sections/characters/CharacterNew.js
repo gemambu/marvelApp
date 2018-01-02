@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: 200,
-        backgroundColor: 'grey',
+        backgroundColor: colors.imageBackground,
         justifyContent: 'center'
     },
     
@@ -195,15 +195,15 @@ const styles = StyleSheet.create({
 
     button: {
         padding: 10,
-        borderColor: 'white',
+        borderColor: colors.buttonBorder,
         borderWidth: 1,
         borderRadius: 6,
     },
 
     textButton: {
-        color: 'white',
+        color: colors.buttonText,
         fontWeight: '600',
-        backgroundColor: 'transparent'
+        backgroundColor: colors.transparent
     },
 
     inputContainer: {

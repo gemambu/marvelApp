@@ -53,7 +53,7 @@ class CharactersList extends Component {
 
             return (
                 <View>
-                    <Spinner name="three-bounce" color="red"/>
+                    <Spinner name="bounce" color="red" />
                     {/* <ActivityIndicator
                     animating={this.props.isFetching}
                     size='large'

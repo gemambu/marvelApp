@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Image, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { colors } from 'marvelApp/src/commons'
 import { Input, Button } from 'marvelApp/src/widgets'
 import ImagePicker from 'react-native-image-picker'
@@ -56,8 +56,22 @@ class CharacterNew extends Component {
                 description: this.state.description
             }
 
-            this.props.postCharacter(characterData)  
+            this.showAlert()
+
         } 
+    }
+
+    showAlert() {
+        Alert.alert(
+            'Incoming feature',
+            'Sorry, at the moment is not possible to save new Characters',
+            [
+              //{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+              //{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'OK, thanks!', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
     }
 
     onSelectImageTapped(){
@@ -70,9 +84,7 @@ class CharacterNew extends Component {
             }
         }
 
-        const imagePicker = ImagePicker;
-
-        imagePicker.showImagePicker(options, (response) => {
+        ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
             if (response.didCancel) {
@@ -121,10 +133,13 @@ class CharacterNew extends Component {
 
                 <View style={styles.inputContainer}>
                     <Input
+                        inputStyle      = { {height: 100 }}
                         onChangeText    = { (v)=> this.setState({description: v}) }
                         value           = { this.state.description }
                         error           = { this.state.descriptionError }
                         label           = { 'Description: ' }
+                        multiline       = { true }
+                        numberOfLines   = { 4 }
                         placeHolder     = { 'The character is a powerful mutant, he has the ability to generate and control magnetic fields' }
                     />
                 </View>
@@ -173,6 +188,7 @@ const styles = StyleSheet.create({
     
     imageContainerBackground: {
         position: 'absolute',
+        backgroundColor: 'rgba(255,0,0,0.6)',
         top: 0,
         bottom: 0,
         left: 0,
@@ -181,13 +197,13 @@ const styles = StyleSheet.create({
 
     button: {
         padding: 10,
-        borderColor: 'black',
+        borderColor: 'white',
         borderWidth: 1,
         borderRadius: 6,
     },
 
     textButton: {
-        color: 'black',
+        color: 'white',
         fontWeight: '600',
         backgroundColor: 'transparent'
     },

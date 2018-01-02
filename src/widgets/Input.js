@@ -11,6 +11,8 @@ export default class Input extends Component {
         label: '',
         value: '',
         error: '',
+        multiline: false,
+        numberOfLines: 1,
         placeHolder: '',
         onChangeText: () => { }
 
@@ -26,6 +28,8 @@ export default class Input extends Component {
                     onChangeText            = { (v) => this.props.onChangeText(v) }
                     placeholder             = { this.props.placeHolder }
                     placeholderTextColor    = { 'grey' }
+                    multiline               = { this.props.multiline }
+	                numberOfLines           = { this.props.numberOfLines }
                     value                   = { this.props.value }
                     underlineColorAndroid   = { 'transparent' }
                 />
@@ -55,6 +59,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         fontSize: 16,
         color: 'black',
+
     },
 
     label: {

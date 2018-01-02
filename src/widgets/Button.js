@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        backgroundColor: 'grey',
+        backgroundColor: 'rgba(192,192,192,0.4)',
         borderRadius: 4,
         flexDirection: 'row',
     },
 
     label: {
-        color: 'black',
+        color: 'red',
         fontWeight: '600',
         fontSize: 16,
     },

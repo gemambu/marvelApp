@@ -40,11 +40,11 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-  <key>NSAppTransportSecurity</key>
+	<key>NSAppTransportSecurity</key>
   <dict>
     <key>NSAllowsArbitraryLoads</key>
     <true/>
-  </dict>
+	</dict>
   <key>NSPhotoLibraryUsageDescription</key>
   <string>¿Da permiso para acceder al carrete?</string>
   <key>NSCameraUsageDescription</key>

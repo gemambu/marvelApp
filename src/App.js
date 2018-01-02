@@ -14,6 +14,8 @@ import { colors } from 'marvelApp/src/commons'
 /********************** COMPONENTS **********************/
 import CharactersList from 'marvelApp/src/sections/characters/CharactersList'
 import CharacterDetail from 'marvelApp/src/sections/characters/CharacterDetail'
+import CharacterNew from 'marvelApp/src/sections/characters/CharacterNew'
+
 
 /********************** REDUX **********************/
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -35,10 +37,16 @@ export default class App extends Component {
     StatusBar.setBarStyle('light-content')
   }
 
+  renderAddCharacterButton() {
+    return (
+      <TouchableOpacity style={styles.addButton} onPress={() => { Actions.CharacterNew( { title: 'New Character'} )}}>
+        <Text style={styles.addButtonText}>{'New'}</Text>
+      </TouchableOpacity>
+    )
+  }
   
   render() {
-
-    
+ 
     return (
       <Provider store={store}>
         <Router>
@@ -47,11 +55,20 @@ export default class App extends Component {
             <Scene
               key={'CharactersList'}
               component={CharactersList}
-              hideNavBar
+              renderRightButton={() => this.renderAddCharacterButton()}
+              navigationBarStyle={styles.navBar}
+              navBarButtonColor={colors.navBarTitle}
+              title={'Comics'}
             />
             <Scene
               key={'CharacterDetail'}
               component={CharacterDetail}
+              navigationBarStyle={styles.navBar}
+              navBarButtonColor={colors.navBarTitle}
+            />
+            <Scene
+              key={'CharacterNew'}
+              component={CharacterNew}
               navigationBarStyle={styles.navBar}
               navBarButtonColor={colors.navBarTitle}
             />
@@ -74,5 +91,17 @@ const styles = StyleSheet.create({
 
   navBarTitle:{
     color: colors.navBarTitle
+  },
+
+  addButtonText: {
+    color: colors.navBarTitle,
+    fontSize: 18,
+    fontWeight: '600',
+  },
+
+  addButton: {
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });

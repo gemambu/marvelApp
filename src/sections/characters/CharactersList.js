@@ -64,7 +64,6 @@ class CharactersList extends Component {
 
         return (
         <View style={styles.container}>
-            <Text style={styles.title}>Comics</Text>
                 { <FlatList
                 
                     data={this.props.list}

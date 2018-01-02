@@ -26,7 +26,7 @@ export default class CharacterDetailExtra extends Component {
 
                 data={this.props.items}
                 renderItem={({ item, index }) => this.renderItem(item, index)}
-                keyExtractor={(item, index) => item.name}
+                keyExtractor={(item, index) => index}
                 extraData={this.props}
                 numColumns={1}
             />
@@ -39,14 +39,14 @@ export default class CharacterDetailExtra extends Component {
 const styles = StyleSheet.create({
 
     typeTitle: {
-        color: 'gray',
+        color: 'rgb(255,0,0)',
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center'
     },
 
     itemInfo: {
-        color: 'gray',
+        color: 'rgb(255,0,0)',
         fontSize: 12,
 
     }

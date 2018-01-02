@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import * as CharactersAction from 'marvelApp/src/redux/actions/characters'
 import CharacterDetailExtra from './CharacterDetailExtra'
@@ -21,6 +21,7 @@ class CharacterDetail extends Component {
         return (
             <View style={styles.container}>
                 <Image source={image} style={styles.image} resizeMode={'cover'} />
+                <ScrollView>
                 { description ? <Text style={styles.description}>{description}</Text> : null }
                 <View style={[styles.container, {padding: 5}]}>
                 { comics && comics.length > 0 ? <CharacterDetailExtra items={comics} info='Comics'/> : null }
@@ -28,6 +29,7 @@ class CharacterDetail extends Component {
                 { series && series.length > 0 ? <CharacterDetailExtra items={series} info='Series'/> : null }
                 { stories && stories.length > 0 ? <CharacterDetailExtra items={stories} info='Stories'/> : null }                 
                 </View>
+                </ScrollView>
             </View>
         )
     }

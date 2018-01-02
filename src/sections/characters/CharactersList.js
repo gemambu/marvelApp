@@ -9,7 +9,7 @@ import { colors, constants } from 'marvelApp/src/commons'
 
 class CharactersList extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
 
         // with this
@@ -17,11 +17,11 @@ class CharactersList extends Component {
         this.onEndReached = this.onEndReached.bind(this)
     }
 
-    componentWillMount(){
-       this.props.initCharactersList()
+    componentWillMount() {
+        this.props.initCharactersList()
     }
 
-    onSelect(character){
+    onSelect(character) {
         this.props.updateCharacterSelected(character)
     }
 
@@ -35,7 +35,7 @@ class CharactersList extends Component {
         )
     }
 
-    onEndReached(){
+    onEndReached() {
         console.log('ON END REACHED')
 
         if (this.props.list.length < this.props.total && !this.props.isFetching) {
@@ -46,54 +46,48 @@ class CharactersList extends Component {
 
     renderHeader() {
 
-        if(this.props.isFetching){
-
+        if (this.props.isFetching) {
 
             const Spinner = require('react-native-spinkit');
 
             return (
-                <View>
-                    <Spinner name="bounce" color="red" />
-                    {/* <ActivityIndicator
-                    animating={this.props.isFetching}
-                    size='large'
-                    color='#FABADA'
-                    style={styles.activityIndicator} /> */}
+                <View style={styles.spinner}>
+                    <Spinner type={'FadingCircleAlt'} color={'red'} size={60} />
                 </View>
             )
         } else {
             return null
         }
-        
+
     }
 
     render() {
 
         return (
-        <View style={styles.container}>
-                { <FlatList
-                
+            <View style={styles.container}>
+                {<FlatList
+
                     data={this.props.list}
                     ListHeaderComponent={() => this.renderHeader()}
                     renderItem={({ item, index }) => this.renderItem(item, index)}
-                    onEndReached = {() => this.onEndReached()}
+                    onEndReached={() => this.onEndReached()}
                     keyExtractor={(item, index) => item.id}
                     extraData={this.props}
                     numColumns={1}
-                /> }
-        </View>)
+                />}
+            </View>)
     }
 
-    
+
 }
 
 const mapStateToProps = (state) => {
 
     return {
-        list        : state.characters.list,
-        isFetching  : state.characters.isFetching,
-        total       : state.characters.total,
-        offset      : state.characters.offset,
+        list: state.characters.list,
+        isFetching: state.characters.isFetching,
+        total: state.characters.total,
+        offset: state.characters.offset,
     }
 }
 
@@ -109,7 +103,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         updateCharacterSelected: (character) => {
             dispatch(CharactersActions.updateCharacterSelected(character))
-            Actions.CharacterDetail( { title: character.name} )
+            Actions.CharacterDetail({ title: character.name })
         }
     }
 }
@@ -122,6 +116,12 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         paddingTop: 40,
         backgroundColor: colors.backgroundColor
+    },
+
+    spinner: {
+        justifyContent: 'center',
+        alignItems: 'center',
+
     },
 
     title: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { View, Image, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native'
 import { colors } from 'marvelApp/src/commons'
 import { Input, Button } from 'marvelApp/src/widgets'
 import ImagePicker from 'react-native-image-picker'
@@ -10,9 +10,9 @@ import * as CharactersActions from 'marvelApp/src/redux/actions/characters'
 
 class CharacterNew extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        
+
         this.state = {
             name: '',
             nameError: '',
@@ -28,28 +28,28 @@ class CharacterNew extends Component {
         let valid = true
         let errors = {}
 
-        if(!this.state.name) {
+        if (!this.state.name) {
             errors.name = 'Select a valid name'
             valid = false
         }
 
-        if(!this.state.description) {
+        if (!this.state.description) {
             errors.description = 'Select a valid description'
             valid = false
         }
 
-        this.setState({ 
+        this.setState({
             nameError: errors.name ? errors.name : '',
             descriptionError: errors.description ? errors.description : '',
         })
 
         return valid
     }
-    
+
     onSubmit() {
 
-        if( this.validateForm() ) {
-            
+        if (this.validateForm()) {
+
             const characterData = {
                 name: this.state.name,
                 image: this.state.image ? 'data:image/jpeg;base64,' + this.state.image.data : null,
@@ -60,7 +60,7 @@ class CharacterNew extends Component {
 
             this.showAlert()
 
-        } 
+        }
     }
 
     showAlert() {
@@ -68,13 +68,13 @@ class CharacterNew extends Component {
             'Incoming feature',
             'Sorry, at the moment is not possible to save new Characters',
             [
-              {text: 'OK, thanks!'},
+                { text: 'OK, thanks!' },
             ],
             { cancelable: false }
-          )
+        )
     }
 
-    onSelectImageTapped(){
+    onSelectImageTapped() {
 
         const options = {
             title: 'Select Image: ',
@@ -103,52 +103,55 @@ class CharacterNew extends Component {
         });
     }
 
-    render(){
+    render() {
 
-        const imageUri = this.state.image ? {uri: this.state.image.uri} : null
+        const imageUri = this.state.image ? { uri: this.state.image.uri } : null
         const imageButtonText = this.state.image ? this.state.image.fileName : 'Select image'
 
-        return(
+        return (
             <View style={styles.container}>
 
                 <View style={styles.imageContainer}>
-                    <Image source={imageUri} style={styles.imageContainerBackground} resizeMode={'cover'}/>
-                    <TouchableOpacity style={styles.button} onPress={ () => this.onSelectImageTapped() }>
-                        <Text style={styles.textButton}>{ imageButtonText }</Text>
+                    <Image source={imageUri} style={styles.imageContainerBackground} resizeMode={'cover'} />
+                    <TouchableOpacity style={styles.button} onPress={() => this.onSelectImageTapped()}>
+                        <Text style={styles.textButton}>{imageButtonText}</Text>
                     </TouchableOpacity>
                 </View>
-                
-                <View style={styles.inputContainer}>
-                    <Input
-                        onChangeText    = { (v)=> this.setState({name: v}) }
-                        value           = { this.state.name }
-                        error           = { this.state.nameError }
-                        label           = { 'Name:' }
-                        placeHolder     = { 'Magneto' }
-                    />
-                </View>
+                <ScrollView>
+                    <View style={styles.inputContainer}>
+                        <Input
+                            onChangeText={(v) => this.setState({ name: v })}
+                            value={this.state.name}
+                            error={this.state.nameError}
+                            label={'Name:'}
+                            placeHolder={'Magneto'}
+                        />
+                    </View>
 
-                <View style={styles.inputContainer}>
-                    <Input
-                        inputStyle      = { {height: 100 }}
-                        onChangeText    = { (v)=> this.setState({description: v}) }
-                        value           = { this.state.description }
-                        error           = { this.state.descriptionError }
-                        label           = { 'Description:' }
-                        maxLength       = { 100 }
-                        multiline       = { true }
-                        numberOfLines   = { 4 }
-                        placeHolder     = { 'The character is a powerful mutant, he has the ability to generate and control magnetic fields' }
-                    />
-                </View>
+                    <View style={styles.inputContainer}>
+                        <Input
+                            inputStyle={{ height: 100 }}
+                            onChangeText={(v) => this.setState({ description: v })}
+                            value={this.state.description}
+                            error={this.state.descriptionError}
+                            label={'Description:'}
+                            maxLength={100}
+                            multiline={true}
+                            numberOfLines={4}
+                            placeHolder={'The character is a powerful mutant, he has the ability to generate and control magnetic fields'}
+                        />
+                    </View>
 
-                <View style={styles.buttonContainer}>
-                    <Button
-                        label       = { 'Save me!' }
-                        onPress     = { () => this.onSubmit() }
-                        isFetching  = { this.props.isFetching } 
-                    />
-                </View>
+                    <View style={styles.buttonContainer}>
+                        <Button
+                            label={'Save me!'}
+                            onPress={() => this.onSubmit()}
+                            isFetching={this.props.isFetching}
+                        />
+                    </View>
+                </ScrollView>
+
+
             </View>
         )
     }
@@ -183,7 +186,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.imageBackground,
         justifyContent: 'center'
     },
-    
+
     imageContainerBackground: {
         position: 'absolute',
         backgroundColor: colors.mainBackground,

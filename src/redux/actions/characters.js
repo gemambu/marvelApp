@@ -1,5 +1,5 @@
 import * as types from '../types/characters'
-import { fetchCharacters, fetchCharacter } from 'marvelApp/src/webservices/webservices'
+import { fetch } from 'marvelApp/src/webservices/webservices'
 import { Actions } from 'react-native-router-flux'
 import { constants } from 'marvelApp/src/commons'
 import * as webservices from 'marvelApp/src/webservices/constants'
@@ -66,7 +66,7 @@ export function fetchCharactersList(){
                     webservices.HASH + 
                     queryString
 
-        fetchCharacters(url).then(response => {
+        fetch(url).then(response => {
 
             const newList = [...list, ...response.data.results]
             dispatch(setCharactersFetching(false))

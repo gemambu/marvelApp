@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import * as CharactersActions from 'marvelApp/src/redux/actions/characters'
 import CharacterCell from './CharacterCell'
 import { colors, constants } from 'marvelApp/src/commons'
+import Search from 'react-native-search-box'
 
 
 class CharactersList extends Component {
@@ -65,7 +66,11 @@ class CharactersList extends Component {
 
         return (
             <View style={styles.container}>
-                {<FlatList
+                <Search
+                    ref="search_box" 
+                    onCancel={() => this.onCancel()}
+                    onChangeText={(text) => this.onChangeText(text)} />
+                <FlatList
 
                     data={this.props.list}
                     ListHeaderComponent={() => this.renderHeader()}
@@ -74,10 +79,70 @@ class CharactersList extends Component {
                     keyExtractor={(item, index) => item.id}
                     extraData={this.props}
                     numColumns={1}
-                />}
+                />
             </View>)
     }
 
+    /* ********** SEARCH METHODS *********** */
+
+    onChangeText = (e) => {
+
+        // Filter with 3 or more characters written
+        if (e && e.length > 2) {
+            console.log('analizo el filter')
+            
+            let text = e.toLowerCase()
+            
+            if (!text || text === '') {
+                //this.props.filterName = null
+                this.render()
+            } 
+            else {
+                this.props.filterName = text
+                this.props.updateCharactersFiltered(text)
+                
+            }
+        } else {
+            this.props.filterName = null
+            this.render()
+        }
+
+    }
+
+    // Important: You must return a Promise
+    beforeFocus = () => {
+        return new Promise((resolve, reject) => {
+            console.log('beforeFocus');
+            resolve();
+        });
+    }
+
+    // Important: You must return a Promise
+    onFocus = (text) => {
+        return new Promise((resolve, reject) => {
+            console.log('onFocus', text);
+            resolve();
+        });
+    }
+
+    // Important: You must return a Promise
+    afterFocus = () => {
+        return new Promise((resolve, reject) => {
+            console.log('afterFocus');
+            resolve();
+        });
+    }
+
+    onCancel = () => {
+        return new Promise((resolve, reject) => {
+            console.log('Cancel Pressed');
+
+            this.props.reloadCharacterList()
+
+            resolve();
+        });
+    }
+    
 
 }
 
@@ -85,6 +150,8 @@ const mapStateToProps = (state) => {
 
     return {
         list: state.characters.list,
+        filterName: state.characters.filterName,
+        initialList: state.characters.initialList,
         isFetching: state.characters.isFetching,
         total: state.characters.total,
         offset: state.characters.offset,
@@ -104,6 +171,14 @@ const mapDispatchToProps = (dispatch, props) => {
         updateCharacterSelected: (character) => {
             dispatch(CharactersActions.updateCharacterSelected(character))
             Actions.CharacterDetail({ title: character.name })
+        },
+        updateCharactersFiltered: (filterName) => {
+            dispatch(CharactersActions.updateCharactersListOffset(0))
+            dispatch(CharactersActions.fetchCharactersFiltered(filterName))
+        },
+        reloadCharacterList: () => {
+            dispatch(CharactersActions.updateCharactersListOffset(0))
+            dispatch(CharactersActions.reloadCharactersList())
         }
     }
 }
@@ -130,7 +205,9 @@ const styles = StyleSheet.create({
         color: colors.title,
         textAlign: 'center'
     },
+
     activityIndicator: {
         marginVertical: 50
-    }
+    },
+
 });

@@ -14,6 +14,20 @@ function updateCharactersList(value, total) {
     }
 }
 
+function setInitialList(value){
+    return {
+        type: types.INIT_CHARACTERS_LIST,
+        value,
+    }
+}
+
+function updateCharactersFiltered(value){
+    return {
+        type: types.GET_CHARACTERS_FILTERED,
+        value
+    }
+}
+
 export function updateCharactersListOffset(value) {
     return {
         type: types.GET_CHARACTERS_OFFSET,
@@ -39,6 +53,46 @@ export function initCharactersList(){
 
         // fetch list
         dispatch(fetchCharactersList())
+    }
+}
+
+export function reloadCharactersList(){
+    return (dispatch, getState) => {
+        const state = getState()
+        const list = state.characters.initialList
+
+        console.log('CharacterAction: loading list again...', list)
+        dispatch(updateCharactersList(list ,0))
+    }
+}
+
+export function fetchCharactersFiltered(filterName){
+    return (dispatch, getState) => {
+
+        dispatch(setCharactersFetching(true))
+
+        const queryString = '&nameStartsWith=' + filterName
+        
+        const url = webservices.CHARACTERS_ENDPOINT + 
+                    webservices.TIMESTAMP + 
+                    webservices.PUBLIC_API_KEY + 
+                    webservices.PUBLIC_API + 
+                    webservices.HASH + 
+                    queryString
+
+        console.log('fetch with url: ', url);
+        fetch(url).then(response => {
+
+            //const newList = [...list, ...response.data.results]
+            console.log('New List: ', response.data.results)
+            const newList = response.data.results
+            dispatch(setCharactersFetching(false))
+            dispatch(updateCharactersList(newList, response.data.total))
+        }).catch( error => {
+
+            console.log("fetchCharactersList error: ", error)
+            dispatch(setCharactersFetching(false))
+        });
     }
 }
 
@@ -69,7 +123,9 @@ export function fetchCharactersList(){
         fetch(url).then(response => {
 
             const newList = [...list, ...response.data.results]
+            
             dispatch(setCharactersFetching(false))
+            dispatch(setInitialList(newList))
             dispatch(updateCharactersList(newList, response.data.total))
         }).catch( error => {
 

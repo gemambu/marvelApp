@@ -53,7 +53,7 @@ class CharactersList extends Component {
 
             return (
                 <View style={styles.spinner}>
-                    <Spinner type={'FadingCircleAlt'} color={colors.activityIndicator} size={60} />
+                    <Spinner type={'FadingCircleAlt'} color={colors.activityIndicator} size={50} />
                 </View>
             )
         } else {
@@ -172,12 +172,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(CharactersList)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingVertical: 30,
+        paddingVertical: 20,
         paddingTop: 20,
         backgroundColor: colors.backgroundColor
     },
 
     spinner: {
+        paddingTop: 5,
         justifyContent: 'center',
         alignItems: 'center',
     },

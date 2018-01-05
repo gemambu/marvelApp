@@ -21,7 +21,7 @@ export default class CharacterDetailExtra extends Component {
         return (<View>
             <Text style={styles.typeTitle}>{info}</Text>
             {<FlatList
-
+                style={styles.list}
                 data={this.props.items}
                 renderItem={({ item, index }) => this.renderItem(item, index)}
                 keyExtractor={(item, index) => index}
@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center'
+    },
+
+    list: {
+        padding: 5
     },
 
     itemInfo: {

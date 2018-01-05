@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
     textContainer: {
         flexDirection: 'row',
         alignItems: 'flex-end',
-        padding: 10,
+        padding: 8,
         position: 'absolute',
-        bottom: 0,
+        top: 0,
         right: 0,
         left: 0,
         backgroundColor: colors.cellTextBackground,
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
 
     image: {
         width: '100%',
-        height: 200,
+        height: 180,   
     }
 })

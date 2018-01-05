@@ -22,7 +22,7 @@ export const DESCRIPTION_LABEL_EXAMPLE = 'The character is a powerful mutant, he
 
 // Constants on Detail view
 
-export const EMPTY_DESCRIPTION = 'Sorry! there is not description for this character'
+export const EMPTY_DESCRIPTION = 'Oops! There is not description for this character'
 export const COMICS_TITLE = 'Comics'
 export const EVENTS_TITLE = 'Events'
 export const SERIES_TITLE = 'Series'

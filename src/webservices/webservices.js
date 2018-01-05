@@ -9,7 +9,7 @@ export function configure() {
 
 export function fetch(url){
     
-    console.log('URL: ', url)
+    console.log('fetching URL: ', url)
     return new Promise(function(resolve, reject) {
         axios.get(url).then( response => {
 

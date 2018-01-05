@@ -9,3 +9,6 @@ export const TIMESTAMP = 'ts=1'
 export const PUBLIC_API_KEY = '&apikey='
 export const PUBLIC_API = '1d62818073f1f77290d9cba5a0df3d8f'
 export const HASH = '&hash=78ab63969e2ecafa056e0ecfbca0c779'
+
+// Filtered Characters Endpoint
+export const NAME_STARTS_WITH = '&nameStartsWith='

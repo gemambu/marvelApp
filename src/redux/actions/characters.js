@@ -73,7 +73,7 @@ export function fetchCharactersFiltered(filterName){
 
         dispatch(setCharactersFetching(true))
 
-        const queryString = '&nameStartsWith=' + filterName
+        const queryString = webservices.NAME_STARTS_WITH + filterName
         
         const url = webservices.CHARACTERS_ENDPOINT + 
                     webservices.TIMESTAMP + 
@@ -82,7 +82,6 @@ export function fetchCharactersFiltered(filterName){
                     webservices.HASH + 
                     queryString
 
-        console.log('fetch with url: ', url);
         fetch(url).then(response => {
 
             console.log('New List: ', response.data.results)
@@ -91,7 +90,7 @@ export function fetchCharactersFiltered(filterName){
             dispatch(updateCharactersList(newList, response.data.total))
         }).catch( error => {
 
-            console.log("fetchCharactersList error: ", error)
+            console.log("fetchCharactersFiltered error: ", error)
             dispatch(setCharactersFetching(false))
         });
     }

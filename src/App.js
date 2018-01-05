@@ -9,7 +9,7 @@ import { View, StyleSheet, StatusBar, TouchableOpacity, Text, Dimensions } from 
 import { Actions, Scene, Router } from 'react-native-router-flux';
 import * as webservices from 'marvelApp/src/webservices/webservices'
 
-import { colors } from 'marvelApp/src/commons'
+import { colors, constants } from 'marvelApp/src/commons'
 
 /********************** COMPONENTS **********************/
 import CharactersList from 'marvelApp/src/sections/characters/CharactersList'
@@ -24,8 +24,8 @@ import thunk from 'redux-thunk';
 import * as reducers from 'marvelApp/src/redux/reducers' // Reducers
 const reducer = combineReducers(reducers) // Combinacion de los reducers
 const store = createStore( // store a partir de reducers y redux-thunk
-  reducer, 
-  applyMiddleware(thunk) 
+  reducer,
+  applyMiddleware(thunk)
 )
 
 
@@ -39,14 +39,14 @@ export default class App extends Component {
 
   renderAddCharacterButton() {
     return (
-      <TouchableOpacity style={styles.addButton} onPress={() => { Actions.CharacterNew( { title: 'New Character'} )}}>
-        <Text style={styles.addButtonText}>{'New'}</Text>
+      <TouchableOpacity style={styles.extraButton} onPress={() => { Actions.CharacterNew({ title: constants.TITLE_NEW_CHARACTER }) }}>
+        <Text style={styles.extraButtonText}>{constants.NEW_BUTTON_TITLE}</Text>
       </TouchableOpacity>
     )
   }
-  
+
   render() {
- 
+
     return (
       <Provider store={store}>
         <Router>
@@ -58,7 +58,7 @@ export default class App extends Component {
               renderRightButton={() => this.renderAddCharacterButton()}
               navigationBarStyle={styles.navBar}
               navBarButtonColor={colors.navBarTitle}
-              title={'Comics'}
+              title={constants.CHARACTERS_TITLE}
             />
             <Scene
               key={'CharacterDetail'}
@@ -82,24 +82,24 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
+    flex: 1,
   },
 
   navBar: {
     backgroundColor: colors.navBar,
   },
 
-  navBarTitle:{
+  navBarTitle: {
     color: colors.navBarTitle
   },
 
-  addButtonText: {
+  extraButtonText: {
     color: colors.navBarTitle,
     fontSize: 18,
     fontWeight: '600',
   },
 
-  addButton: {
+  extraButton: {
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',

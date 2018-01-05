@@ -3,16 +3,16 @@ import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-nat
 import { connect } from 'react-redux'
 import * as CharactersAction from 'marvelApp/src/redux/actions/characters'
 import CharacterDetailExtra from './CharacterDetailExtra'
-import { colors } from 'marvelApp/src/commons'
+import { colors, constants } from 'marvelApp/src/commons'
 
 class CharacterDetail extends Component {
     render() {
 
         
         const { character } = this.props
-        console.log('character:', character)
+        console.log('Character Detail. Loading character :', character)
         const image = character && character.thumbnail ? { uri: character.thumbnail.path + '/landscape_amazing.jpg' } : null
-        const description = character && character.description ? character.description : null
+        const description = character && character.description ? character.description : constants.EMPTY_DESCRIPTION
         const comics = character && character.comics && character.comics.items ? character.comics.items : null
         const events = character && character.events && character.events.items ? character.events.items : null        
         const series = character && character.series && character.series.items ? character.series.items : null
@@ -22,13 +22,13 @@ class CharacterDetail extends Component {
             <View style={styles.container}>
                 <Image source={image} style={styles.image} resizeMode={'cover'} />
                 <ScrollView>
-                { description ? <Text style={styles.description}>{description}</Text> : null }
-                <View style={[styles.container, {padding: 5}]}>
-                { comics && comics.length > 0 ? <CharacterDetailExtra items={comics} info='Comics'/> : null }
-                { events && events.length > 0 ? <CharacterDetailExtra items={events} info='Events'/> : null }
-                { series && series.length > 0 ? <CharacterDetailExtra items={series} info='Series'/> : null }
-                { stories && stories.length > 0 ? <CharacterDetailExtra items={stories} info='Stories'/> : null }                 
-                </View>
+                    <Text style={styles.description}>{description}</Text> 
+                        <View style={[styles.container, {padding: 8}]}>
+                        { comics && comics.length > 0 ? <CharacterDetailExtra items={comics} info={constants.COMICS_TITLE}/> : null }
+                        { events && events.length > 0 ? <CharacterDetailExtra items={events} info={constants.EVENTS_TITLE}/> : null }
+                        { series && series.length > 0 ? <CharacterDetailExtra items={series} info={constants.SERIES_TITLE}/> : null }
+                        { stories && stories.length > 0 ? <CharacterDetailExtra items={stories} info={constants.STORIES_TITLE}/> : null } 
+                        </View>
                 </ScrollView>
             </View>
         )
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: colors.title,
         alignItems: 'center',
-        padding: 5
+        padding: 6
     },
 
     image: {

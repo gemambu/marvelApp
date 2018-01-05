@@ -11,9 +11,7 @@ export default class CharacterDetailExtra extends Component {
 
     renderItem(item, index) {
 
-        return (
-            <Text style={styles.itemInfo}>{item.name}</Text>
-        )
+        return <Text style={styles.itemInfo}>{'- ' + item.name}</Text>
     }
 
     render() {
@@ -47,8 +45,7 @@ const styles = StyleSheet.create({
 
     itemInfo: {
         color: colors.text,
-        fontSize: 13,
-
+        fontSize: 13
     }
 
 })

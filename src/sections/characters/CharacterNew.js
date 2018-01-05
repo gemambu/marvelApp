@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native'
-import { colors } from 'marvelApp/src/commons'
+import { colors, constants } from 'marvelApp/src/commons'
 import { Input, Button } from 'marvelApp/src/widgets'
 import ImagePicker from 'react-native-image-picker'
 
@@ -29,12 +29,12 @@ class CharacterNew extends Component {
         let errors = {}
 
         if (!this.state.name) {
-            errors.name = 'Select a valid name'
+            errors.name = constants.ERROR_NAME
             valid = false
         }
 
         if (!this.state.description) {
-            errors.description = 'Select a valid description'
+            errors.description = constants.ERROR_DESCRIPTION
             valid = false
         }
 
@@ -65,10 +65,10 @@ class CharacterNew extends Component {
 
     showAlert() {
         Alert.alert(
-            'Incoming feature',
-            'Sorry, at the moment is not possible to save new Characters',
+            constants.ALERT_TITLE,
+            constants.ALERT_MESSAGE,
             [
-                { text: 'OK, thanks!' },
+                { text: constants.ALERT_OK_BUTTON },
             ],
             { cancelable: false }
         )
@@ -77,7 +77,7 @@ class CharacterNew extends Component {
     onSelectImageTapped() {
 
         const options = {
-            title: 'Select Image: ',
+            title: constants.IMAGE_PICKER_MESSAGE,
             storageOptions: {
                 skipBackup: true,
                 path: 'images'
@@ -106,7 +106,7 @@ class CharacterNew extends Component {
     render() {
 
         const imageUri = this.state.image ? { uri: this.state.image.uri } : null
-        const imageButtonText = this.state.image ? this.state.image.fileName : 'Select image'
+        const imageButtonText = this.state.image ? this.state.image.fileName : constants.IMAGE_PICKER_BUTTON
 
         return (
             <View style={styles.container}>
@@ -123,8 +123,8 @@ class CharacterNew extends Component {
                             onChangeText={(v) => this.setState({ name: v })}
                             value={this.state.name}
                             error={this.state.nameError}
-                            label={'Name:'}
-                            placeHolder={'Magneto'}
+                            label={constants.NAME_LABEL}
+                            placeHolder={constants.NAME_LABEL_EXAMPLE}
                         />
                     </View>
 
@@ -134,17 +134,17 @@ class CharacterNew extends Component {
                             onChangeText={(v) => this.setState({ description: v })}
                             value={this.state.description}
                             error={this.state.descriptionError}
-                            label={'Description:'}
                             maxLength={100}
                             multiline={true}
                             numberOfLines={4}
-                            placeHolder={'The character is a powerful mutant, he has the ability to generate and control magnetic fields'}
+                            label={constants.DESCRIPTION_LABEL}
+                            placeHolder={constants.DESCRIPTION_LABEL_EXAMPLE}
                         />
                     </View>
 
                     <View style={styles.buttonContainer}>
                         <Button
-                            label={'Save me!'}
+                            label={constants.SAVE_BUTTON}
                             onPress={() => this.onSubmit()}
                             isFetching={this.props.isFetching}
                         />

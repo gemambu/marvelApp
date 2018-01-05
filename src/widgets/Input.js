@@ -28,12 +28,12 @@ export default class Input extends Component {
                     style                   = { [styles.input, this.props.inputStyle] }
                     onChangeText            = { (v) => this.props.onChangeText(v) }
                     placeholder             = { this.props.placeHolder }
-                    placeholderTextColor    = { 'grey' }
+                    placeholderTextColor    = { colors.placeHolderText }
                     maxLength               = { this.props.maxLength }
                     multiline               = { this.props.multiline }
 	                numberOfLines           = { this.props.numberOfLines }
                     value                   = { this.props.value }
-                    underlineColorAndroid   = { 'transparent' }
+                    underlineColorAndroid   = { colors.transparent }
                 />
 
                 { this.props.error ? <Text style={[styles.error, this.props.errorStyle]}>{this.props.error}</Text> : null }
@@ -55,17 +55,17 @@ const styles = StyleSheet.create({
     },
 
     input: {
-        borderColor: 'grey',
+        borderColor: colors.widgetInputBorder,
         borderWidth: 1,
         padding: 10,
         borderRadius: 6,
         fontSize: 16,
-        color: 'black',
+        color: colors.widgetInputText,
 
     },
 
     label: {
-        color: 'black',
+        color: colors.widgetLabelText,
         fontSize: 16,
         marginBottom: 10,
         fontWeight: '600',

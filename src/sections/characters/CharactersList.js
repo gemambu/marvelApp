@@ -64,10 +64,17 @@ class CharactersList extends Component {
 
     render() {
 
+        const itemList = this.props.list
+
         return (
+
             <View style={styles.container}>
                 <Search
                     ref="search_box"
+                    backgroundColor={colors.mainBackground}
+                    titleCancelColor={colors.searchText}
+                    tintColorSearch={colors.searchText}
+                    placeholderTextColor={colors.searchText}
                     onCancel={() => this.onCancel()}
                     onChangeText={(text) => this.onChangeText(text)} />
                 <FlatList
@@ -109,22 +116,6 @@ class CharactersList extends Component {
     beforeFocus = () => {
         return new Promise((resolve, reject) => {
             console.log('beforeFocus');
-            resolve();
-        });
-    }
-
-    // Important: You must return a Promise
-    onFocus = (text) => {
-        return new Promise((resolve, reject) => {
-            console.log('onFocus', text);
-            resolve();
-        });
-    }
-
-    // Important: You must return a Promise
-    afterFocus = () => {
-        return new Promise((resolve, reject) => {
-            console.log('afterFocus');
             resolve();
         });
     }

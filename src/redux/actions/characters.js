@@ -14,10 +14,11 @@ function updateCharactersList(value, total) {
     }
 }
 
-function setInitialList(value){
+function setInitialList(value, total){
     return {
         type: types.INIT_CHARACTERS_LIST,
         value,
+        total
     }
 }
 
@@ -60,9 +61,10 @@ export function reloadCharactersList(){
     return (dispatch, getState) => {
         const state = getState()
         const list = state.characters.initialList
+        const total = state.characters.total
 
         console.log('CharacterAction: loading list again...', list)
-        dispatch(updateCharactersList(list ,0))
+        dispatch(updateCharactersList(list, total))
     }
 }
 
@@ -83,7 +85,6 @@ export function fetchCharactersFiltered(filterName){
         console.log('fetch with url: ', url);
         fetch(url).then(response => {
 
-            //const newList = [...list, ...response.data.results]
             console.log('New List: ', response.data.results)
             const newList = response.data.results
             dispatch(setCharactersFetching(false))

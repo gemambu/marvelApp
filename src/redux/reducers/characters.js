@@ -3,7 +3,6 @@ import * as types from '../types/characters'
 const initialState = {
     isFetching: false,
     list: [],
-    filterName: '',
     initialList: [],
     total: 0,
     offset: 0,
@@ -23,7 +22,8 @@ export default function reducer(state = initialState, action = {}) {
         case types.INIT_CHARACTERS_LIST:
             return {
                 ...state,
-                initialList: action.value
+                initialList: action.value,
+                total: action.total
             };
         case types.GET_CHARACTERS_FILTERED:
             return {

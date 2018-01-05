@@ -67,7 +67,7 @@ class CharactersList extends Component {
         return (
             <View style={styles.container}>
                 <Search
-                    ref="search_box" 
+                    ref="search_box"
                     onCancel={() => this.onCancel()}
                     onChangeText={(text) => this.onChangeText(text)} />
                 <FlatList
@@ -89,21 +89,17 @@ class CharactersList extends Component {
 
         // Filter with 3 or more characters written
         if (e && e.length > 2) {
-            console.log('analizo el filter')
-            
+
             let text = e.toLowerCase()
-            
+
+            console.log('Analyzing the filter with text: ', text)
             if (!text || text === '') {
-                //this.props.filterName = null
                 this.render()
-            } 
+            }
             else {
-                this.props.filterName = text
                 this.props.updateCharactersFiltered(text)
-                
             }
         } else {
-            this.props.filterName = null
             this.render()
         }
 
@@ -142,15 +138,12 @@ class CharactersList extends Component {
             resolve();
         });
     }
-    
-
 }
 
 const mapStateToProps = (state) => {
 
     return {
         list: state.characters.list,
-        filterName: state.characters.filterName,
         initialList: state.characters.initialList,
         isFetching: state.characters.isFetching,
         total: state.characters.total,
@@ -196,7 +189,6 @@ const styles = StyleSheet.create({
     spinner: {
         justifyContent: 'center',
         alignItems: 'center',
-
     },
 
     title: {

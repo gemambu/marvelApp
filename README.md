@@ -18,13 +18,35 @@ La práctica consiste en crear una aplicación con los siguientes requisitos:
 - Un formulario de añadir personaje (aunque no esté conectado contra un webservice)
 - En caso de usar una API distinta o de añadir alguna funcionalidad extra, especificar en el Read.me del repositorio.
 
-Entrega:
-La fecha de entrega de la práctica será el **7 DE ENERO**.
-
 
 ## Instalación
 
+Descargar el proyecto:
+
+`git clone https://github.com/gemambu/marvelApp.git`
+
+e instalarlo:
+
+`cd marvelApp`
+
+`npm install`
+
+## Cómo arrancar la aplicación
+
+Si no se ha hecho una release de la aplicación, podemos seguir los siguientes pasos:
+
+Ejecutar: `npm start`
+
+Ejecutar en otro terminal: `react-native run-ios` en caso de querer arrancar el simulador de iOS o `react-native run-android` en caso de querer arrancar el simulador de Android.
+
+### Opcional: instalar release <Revisar!>
+
 ## Extras
+
+Se ha añadido una barra de búsqueda en el listado de personajes. Para ello, he uitlizado la librería [react-native-search-box](https://github.com/agiletechvn/react-native-search-box). 
+
+En cuanto el usuario escribe tres o más caracteres, se hace una consulta a la API de marvel buscando coincidencias de nombres que empiecen por el texto de búsqueda. Al pulsar sobre Cancelar, se borra el texto y se vuelve a mostrar el listado completo de personajes sin filtro.
+
 
 ## Demo iOS
 

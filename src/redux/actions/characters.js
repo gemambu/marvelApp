@@ -103,6 +103,7 @@ export function fetchCharactersList(){
 
         const state = getState()
         const list = state.characters.list
+        const initialList = state.characters.initialList
         const offset = state.characters.offset
         const limit = constants.LIST_CHARACTERS_OFFSET
 
@@ -123,9 +124,9 @@ export function fetchCharactersList(){
         fetch(url).then(response => {
 
             const newList = [...list, ...response.data.results]
-            
+            if (initialList.length == 0) dispatch(setInitialList(newList))
+
             dispatch(setCharactersFetching(false))
-            dispatch(setInitialList(newList))
             dispatch(updateCharactersList(newList, response.data.total))
         }).catch( error => {
 

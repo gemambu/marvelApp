@@ -162,7 +162,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         reloadCharacterList: () => {
             dispatch(CharactersActions.updateCharactersListOffset(0))
-            dispatch(CharactersActions.reloadCharactersList())
+            dispatch(CharactersActions.reloadCharactersList())            
         }
     }
 }

@@ -52,6 +52,8 @@ Ejecutar en un segundo terminal:
 
 ## Información del proyecto
 
+La API utilizada para la aplicación es la sugerida en la práctica: [API de marvel](https://developer.marvel.com/docs). 
+
 Se han utilizado las siguientes librerías de terceros para el desarrollo de la aplicación:
 
 - [react-native-image-picker](https://github.com/react-community/react-native-image-picker)

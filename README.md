@@ -85,7 +85,11 @@ Esta funcionalidad no es completa, ya que el API de Marvel no ofrece la posibili
 
 ## Demo iOS
 
+![](https://thumbs.gfycat.com/BriskTallBetafish-size_restricted.gif)
+
 ## Demo Android
+
+![](https://thumbs.gfycat.com/FaintImpeccableBedbug-size_restricted.gif)
 
 ## Posibles mejoras
 

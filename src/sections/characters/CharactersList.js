@@ -70,7 +70,7 @@ class CharactersList extends Component {
 
             <View style={styles.container}>
                 <Search
-                    ref="search_box"
+                    ref='search_box'
                     backgroundColor={colors.mainBackground}
                     titleCancelColor={colors.searchText}
                     tintColorSearch={colors.searchText}
@@ -78,7 +78,6 @@ class CharactersList extends Component {
                     onCancel={() => this.onCancel()}
                     onChangeText={(text) => this.onChangeText(text)} />
                 <FlatList
-
                     data={this.props.list}
                     ListHeaderComponent={() => this.renderHeader()}
                     renderItem={({ item, index }) => this.renderItem(item, index)}
@@ -110,14 +109,6 @@ class CharactersList extends Component {
             this.render()
         }
 
-    }
-
-    // Important: You must return a Promise
-    beforeFocus = () => {
-        return new Promise((resolve, reject) => {
-            console.log('beforeFocus');
-            resolve();
-        });
     }
 
     onCancel = () => {
@@ -162,7 +153,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         reloadCharacterList: () => {
             dispatch(CharactersActions.updateCharactersListOffset(0))
-            dispatch(CharactersActions.reloadCharactersList())            
+            dispatch(CharactersActions.reloadCharactersList())
         }
     }
 }

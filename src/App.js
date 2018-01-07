@@ -50,7 +50,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <Scene key="root">
+          <Scene key='root'>
 
             <Scene
               key={'CharactersList'}

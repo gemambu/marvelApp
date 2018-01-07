@@ -56,10 +56,10 @@ La API utilizada para la aplicación es la sugerida en la práctica: [API de mar
 
 Se han utilizado las siguientes librerías de terceros para el desarrollo de la aplicación:
 
-- [react-native-image-picker](https://github.com/react-community/react-native-image-picker)
-- [react-native-router-flux](https://github.com/aksonov/react-native-router-flux)
-- [react-native-search-box](https://github.com/agiletechvn/react-native-search-box)
-- [react-native-spinkit](https://github.com/maxs15/react-native-spinkit)
+- [react-native-image-picker](https://github.com/react-community/react-native-image-picker): Un módulo React Native que le permite utilizar la interfaz de usuario nativa para seleccionar medios de la biblioteca del dispositivo o directamente desde la cámara.
+- [react-native-router-flux](https://github.com/aksonov/react-native-router-flux): El primer enrutador declarativo React Native. Separa la lógica de navegación de la presentación. 
+- [react-native-search-box](https://github.com/agiletechvn/react-native-search-box): Un cuadro de búsqueda simple con animación, inspirado en la barra de búsqueda de ios. Ligero, rápido, flexible.
+- [react-native-spinkit](https://github.com/maxs15/react-native-spinkit): Una colección de indicadores de carga animados para React Native.
 
 ## Extras
 

@@ -46,10 +46,10 @@
     <true/>
 	</dict>
   <key>NSPhotoLibraryUsageDescription</key>
-  <string>¿Da permiso para acceder al carrete?</string>
+  <string>This app requires access to the photo library.</string>
   <key>NSCameraUsageDescription</key>
-  <string>¿Da permiso para acceder a la cámara?</string>
+  <string>This app requires access to the camera.</string>
   <key>NSPhotoLibraryAddUsageDescription</key>
-  <string>¿Da permiso para guardar imágenes en el carrete?</string>
+  <string>This app requires access to the photo library.</string>
 </dict>
 </plist>

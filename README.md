@@ -9,12 +9,11 @@ La práctica consiste en crear una aplicación con los siguientes requisitos:
 - Pantalla con un listado FlatList y datos cargados desde el web services sobre la temática elegida.
 - Pantalla de vista detalle al pulsar una celda del listado.
 - Hacer uso de la librería Redux
-- La app deberá usar uno de los componentes de navegación mostrados en las diapositivas del curso (Recomendado react-native-router-flux )
+- La app deberá usar uno de los componentes de navegación mostrados en las diapositivas del curso (Recomendado [react-native-router-flux](https://github.com/aksonov/react-native-router-flux))
 
 **Opcionales**
 
-- El uso de este spinner en los tiempos de carga, que tendremos que enlazar MANUALMENTE con nuestros proyectos nativos.
-[Spinkit](https://github.com/maxs15/react-native-spinkit)
+- El uso de este spinner [Spinkit](https://github.com/maxs15/react-native-spinkit) en los tiempos de carga, que tendremos que enlazar MANUALMENTE con nuestros proyectos nativos.
 - Un formulario de añadir personaje (aunque no esté conectado contra un webservice)
 - En caso de usar una API distinta o de añadir alguna funcionalidad extra, especificar en el Read.me del repositorio.
 
